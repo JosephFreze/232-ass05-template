@@ -2,7 +2,7 @@
 // CSCI 232 Assignment 05 – Evolution of Data Structures
 // Student Implementation
 // ============================================================
-// Author: [Your Name Here]
+// Author: Joseph Freze
 // ============================================================
 
 #include "code.hpp"
@@ -20,9 +20,30 @@
 /// 'c' -> string pointer content (or "nullptr" if cPtr is null)
 /// default -> "unknown"
 
+
+
 std::string printLegacyData(LegacyData data, char type) {
-    // TODO: Implement switch/case for 'i', 'd', 'c' and default case
-    return "";
+    std::string result = "unknown";
+    
+    if(type == 'i')
+    {
+        result = std::format("{}", data.i);
+        return result;
+    }
+    if(type == 'd')
+    {
+        result = std::format("{}", data.d);
+        return result;
+    }
+    if(type == 'c')
+    {
+        if(data.cPtr != NULL)
+        {
+            result = std::format("{}", data.cPtr);
+            return result;
+        }
+    }
+    return result;
 }
 
 // ============================================================
@@ -32,6 +53,10 @@ std::string printLegacyData(LegacyData data, char type) {
 /// Initializes a structNode with value, type indicator, and nullptr nextPtr.
 void initStructNode(structNode* nPtr, LegacyData val, char type) {
     // TODO: Check if nPtr is nullptr before assigning fields
+    if (nPtr == nullptr)
+    {
+        
+    }
 }
 
 /// Dynamically allocates two structNodes.
