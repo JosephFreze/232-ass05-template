@@ -60,12 +60,11 @@ structNode* createTwoStructNodes();
 /// YOUR TASK: Define public members (value, nextPtr, typeData) and constructor declaration.
 class classNode {
 public:
-    // TODO: Define members and constructor
-    // LegacyData value;
-    // classNode* nextPtr;
-    // char typeData;
+    LegacyData value;
+    classNode* nextPtr;
+    char typeData;
 
-    // classNode(LegacyData val, char type);
+    classNode(LegacyData val, char type);
 };
 
 /// Creates two dynamically allocated classNode objects linked together.

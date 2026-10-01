@@ -15,14 +15,22 @@
 /// Verify the returned string matches "42".
 void test_printLegacyData_int(void) 
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    LegacyData data;
+    data.i = 42;
+    std::string result = printLegacyData(data, 'i');
+
+    TEST_ASSERT_EQUAL_STRING("42", result.c_str());
 }
 
 /// Create a LegacyData union with a double (3.14). Call printLegacyData.
 /// Verify the returned string matches "3.14".
 void test_printLegacyData_double(void) 
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    LegacyData data;
+    data.d = 3.14;
+    std::string result = printLegacyData(data, 'd');
+
+    TEST_ASSERT_EQUAL_STRING("3.14", result.c_str());
 }
 
 // ============================================================
@@ -34,7 +42,16 @@ void test_printLegacyData_double(void)
 /// Clean up allocated memory.
 void test_createTwoStructNodes_links_correctly(void) 
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    structNode* head = createTwoStructNodes();
+
+    TEST_ASSERT_EQUAL_INT(5, head->value.i);
+    TEST_ASSERT_EQUAL_CHAR('i', head->typeData);
+
+    TEST_ASSERT_EQUAL_DOUBLE(3.14, head->nextPtr->value.d);
+    TEST_ASSERT_EQUAL_CHAR('d', head->nextPtr->typeData);
+
+    delete head->nextPtr;
+    delete head;
 }
 
 // ============================================================
@@ -46,7 +63,16 @@ void test_createTwoStructNodes_links_correctly(void)
 /// Clean up allocated memory.
 void test_createTwoClassNodes_links_correctly(void) 
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    classNode* head = createTwoClassNodes();
+
+    TEST_ASSERT_EQUAL_INT(5, head->value.i);
+    TEST_ASSERT_EQUAL_CHAR('i', head->typeData);
+
+    TEST_ASSERT_EQUAL_DOUBLE(3.14, head->nextPtr->value.d);
+    TEST_ASSERT_EQUAL_CHAR('d', head->nextPtr->typeData);
+
+    delete head->nextPtr;
+    delete head;
 }
 
 // ============================================================
