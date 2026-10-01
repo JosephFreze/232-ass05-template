@@ -51,18 +51,28 @@ std::string printLegacyData(LegacyData data, char type) {
 // ============================================================
 
 /// Initializes a structNode with value, type indicator, and nullptr nextPtr.
-void initStructNode(structNode* nPtr, LegacyData val, char type) {
-    // TODO: Check if nPtr is nullptr before assigning fields
+void initStructNode(structNode* nPtr, LegacyData val, char type)
+{
     if (nPtr == nullptr)
     {
         return;
     }
-    else
+
+    if (type == 'i')
     {
-        nPtr->value = val;
-        nPtr->nextPtr = nullptr;
-        nPtr->typeData = type;
+        nPtr->value.i = val.i;
     }
+    else if (type == 'd')
+    {
+        nPtr->value.d = val.d;
+    }
+    else if (type == 'c')
+    {
+        nPtr->value.cPtr = val.cPtr;
+    }
+
+    nPtr->nextPtr = nullptr;
+    nPtr->typeData = type;
 }
 
 /// Dynamically allocates two structNodes.
@@ -100,16 +110,27 @@ structNode* createTwoStructNodes() {
 
 classNode::classNode(LegacyData val, char type)
 {
-    // TODO: Assign value, typeData, and set nextPtr to nullptr
-    value = val;
+    if (type == 'i')
+    {
+        value.i = val.i;
+    }
+    else if (type == 'd')
+    {
+        value.d = val.d;
+    }
+    else if (type == 'c')
+    {
+        value.cPtr = val.cPtr;
+    }
+
     typeData = type;
     nextPtr = nullptr;
 }
 
-/// Dynamically allocates two classNodes (int 5, double 3.14) and links them.
-classNode* createTwoClassNodes() {
-    // TODO: Allocate dynamically, link nodes, and return head
+classNode* createTwoClassNodes()
+{
     LegacyData data;
+
     data.i = 5;
     classNode* head = new classNode(data, 'i');
 
@@ -126,11 +147,15 @@ classNode* createTwoClassNodes() {
 // ============================================================
 
 /// Dynamically allocates two classNodeT<int> objects (int 5, int 3) and links them.
-classNodeT<int>* createTwoTemplateNodes() {
-    // TODO: Instantiate classNodeT<int> nodes using new, link them, and return head
-    return nullptr;
-}
+classNodeT<int>* createTwoTemplateNodes()
+{
+    classNodeT<int>* head = new classNodeT<int>(5);
+    classNodeT<int>* second = new classNodeT<int>(3);
 
+    head->nextPtr = second;
+
+    return head;
+}
 // ============================================================
 // STAGE 4: C++17 Variant and LinkedList Manager
 // ============================================================
