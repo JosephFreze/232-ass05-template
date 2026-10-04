@@ -45,51 +45,9 @@ void tearDown(void) {}
 // Main Test Runner
 // ============================================================
 
-class Node
-{
-    public: int value;
-    public: Node * nextPtr;
-};
-
-
-template <typename T>
-class classNodeT
-{
-    public: T value;
-    public: classNodeT * nextPtr;
-};
-
-using namespace std;
-
 
 int main(void) 
 {
-    Node node;
-    node.value = 5;
-    node.nextPtr = NULL;
-
-    classNodeT<int> nodeT;
-    nodeT.value = 5;
-
-    classNodeT<string> nodeT2;
-    nodeT2.value = "hello world";
-
-    cout << nodeT.value << endl;
-    cout << nodeT2.value << endl;
-
-    std::string name = "John";
-    
-    double num = 3.14159;
-
-    std::string formatted_str = std::format("My name is {:.2s} and pi is {:.2f}", name, num);
-
-    // std::cout << std::format("My name is {:.2s} and pi is {:.2f}", name, num) << std::endl;
-
-    std::cout << std::format("first var{0} and second var {1} and first var {0}", 1, 2) << std::endl; 
-
-
-
-
 
     UNITY_BEGIN();
 

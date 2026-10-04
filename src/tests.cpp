@@ -99,54 +99,135 @@ void test_createTwoTemplateNodes_links_correctly(void)
 
 /// Create a LinkedList. Add two nodes using addFirst.
 /// Verify listLength() returns 2 after insertions.
-void test_linkedList_addFirst_updates_counter(void) 
+void test_linkedList_addFirst_updates_counter(void)
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    LinkedList list;
+
+    classNodeVariant* first = new classNodeVariant(10);
+    classNodeVariant* second = new classNodeVariant(20);
+
+    list.addFirst(first);
+    list.addFirst(second);
+
+    TEST_ASSERT_EQUAL_INT(2, list.listLength());
 }
 
 /// Create a LinkedList. Add nodes (10, then 20) using addLast.
 /// Capture std::cout and verify elements appear in order ("10" before "20").
-void test_linkedList_addLast_places_at_end(void) 
+void test_linkedList_addLast_places_at_end(void)
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    LinkedList list;
+
+    classNodeVariant* first = new classNodeVariant(10);
+    classNodeVariant* second = new classNodeVariant(20);
+
+    list.addLast(first);
+    list.addLast(second);
+
+    std::ostringstream output;
+    std::streambuf* oldBuffer = std::cout.rdbuf(output.rdbuf());
+
+    list.printList();
+
+    std::cout.rdbuf(oldBuffer);
+
+    std::string result = output.str();
+
+    TEST_ASSERT_TRUE(result.find("10") < result.find("20"));
 }
 
 /// Create a LinkedList with an int, double, and string.
 /// Call deleteValue() with the double value (3.14).
 /// Verify list length decreases to 2 and second call returns -1.
-void test_linkedList_deleteValue_removes_variant(void) 
+void test_linkedList_deleteValue_removes_variant(void)
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    LinkedList list;
+
+    list.addLast(new classNodeVariant(10));
+    list.addLast(new classNodeVariant(3.14));
+    list.addLast(new classNodeVariant(std::string("test")));
+
+    int result = list.deleteValue(3.14);
+
+    TEST_ASSERT_EQUAL_INT(0, result);
+    TEST_ASSERT_EQUAL_INT(2, list.listLength());
+
+    result = list.deleteValue(3.14);
+
+    TEST_ASSERT_EQUAL_INT(-1, result);
 }
 
 /// Create a LinkedList and insert three nodes.
 /// Call destroyList().
 /// Verify listLength() becomes 0.
-void test_linkedList_destroyList_clears_all(void) 
+void test_linkedList_destroyList_clears_all(void)
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    LinkedList list;
+
+    list.addLast(new classNodeVariant(10));
+    list.addLast(new classNodeVariant(20));
+    list.addLast(new classNodeVariant(30));
+
+    list.destroyList();
+
+    TEST_ASSERT_EQUAL_INT(0, list.listLength());
 }
 
 /// Create a LinkedList with nodes (10, 20, 30).
 /// Call deleteFirst().
 /// Verify listLength() becomes 2 and operation returns 0.
-void test_linkedList_deleteFirst(void) 
+void test_linkedList_deleteFirst(void)
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    LinkedList list;
+
+    list.addLast(new classNodeVariant(10));
+    list.addLast(new classNodeVariant(20));
+    list.addLast(new classNodeVariant(30));
+
+    int result = list.deleteFirst();
+
+    TEST_ASSERT_EQUAL_INT(0, result);
+    TEST_ASSERT_EQUAL_INT(2, list.listLength());
 }
 
 /// Create a LinkedList with nodes (10, 20, 30).
 /// Call deleteLast().
 /// Verify listLength() becomes 2 and operation returns 0.
-void test_linkedList_deleteLast(void) 
+void test_linkedList_deleteLast(void)
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    LinkedList list;
+
+    list.addLast(new classNodeVariant(10));
+    list.addLast(new classNodeVariant(20));
+    list.addLast(new classNodeVariant(30));
+
+    int result = list.deleteLast();
+
+    TEST_ASSERT_EQUAL_INT(0, result);
+    TEST_ASSERT_EQUAL_INT(2, list.listLength());
 }
 
 /// Create a LinkedList with nodes (1, 2.5, "test").
 /// Redirect std::cout buffer and call printList().
 /// Verify printed output contains "1", "2.5" (or "2.50"), and "test".
-void test_linkedList_printList(void) 
+void test_linkedList_printList(void)
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    LinkedList list;
+
+    list.addLast(new classNodeVariant(1));
+    list.addLast(new classNodeVariant(2.5));
+    list.addLast(new classNodeVariant(std::string("test")));
+
+    std::ostringstream output;
+    std::streambuf* oldBuffer = std::cout.rdbuf(output.rdbuf());
+
+    list.printList();
+
+    std::cout.rdbuf(oldBuffer);
+
+    std::string result = output.str();
+
+    TEST_ASSERT_TRUE(result.find("1") != std::string::npos);
+    TEST_ASSERT_TRUE(result.find("2.5") != std::string::npos);
+    TEST_ASSERT_TRUE(result.find("test") != std::string::npos);
 }
